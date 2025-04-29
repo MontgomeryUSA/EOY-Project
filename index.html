@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+    <html>
+        <head> 
+            <link href="index.css" rel="stylesheet" type="text/css">
+            <title>Welcome to Julian's</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+            <script src="index.js"></script>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
+            
+        </head>
+        <body>
+            <div class="dropdown" id="myDropdown">
+                <i class="fas fa-user-circle" style="font-size:6vh;" onclick="toggleDropdown()"></i>
+              <div class="dropdown-content" style="padding-bottom: 0;">
+                <a href="index.html" onclick="closeDropdown()" style = "pointer-events: all;">Home</a>
+                <a href="create.html" onclick="closeDropdown()" style = "pointer-events: all;">Create</a>
+                <a href="explore.html" onclick="closeDropdown()" style = "pointer-events: all;">Explore</a>
+                <a href="team.html" onclick="closeDropdown()" style = "pointer-events: all;">Team</a>
+              </div>
+            </div> 
+    <div class="homepage">
+        <div class="block">
+            <h2>WELCOME TO</h2>
+            <p>BuildIT</p>
+            <div class = "buttonLayout">
+                <a href="create.html">
+                    <button class="button1"><span>Create</span></button>
+                </a>
+       
+                <a href="explore.html">
+                    <button class="button2"><span>Explore</span></button>
+                </a>
+            </div>
+        </div>         
+          <spline-viewer class="background" url="https://prod.spline.design/1PyUOFoV1pIePoty/scene.splinecode"></spline-viewer>  
+          <div class="rectangle"></div>   
+          <div class="rectangle2"></div>     
+        </div>
+        </body>
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+    </html>

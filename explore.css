@@ -1,0 +1,134 @@
+@font-face {
+  font-family: 'Moonstrike';
+  src: url('Moonstrike.woff2') format('woff2'),
+       url('moonstrike-nrqzp.woff') format('woff'),
+       url('Moonstrike-nRqzP.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: rgb(38, 38, 38);
+  margin: 0;
+  padding: 0;
+}
+
+.body2 {
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.title {
+  border-bottom: 2px solid white;
+  width: 30%;
+  display: inline-block;
+  padding-bottom: 1vh;
+  font-size: 13vh;
+  font-family: MoonStrike;
+  color: white;
+  margin-top: 2vh;
+  margin-bottom: 4vh;
+}
+
+.dropdown {
+  display: inline-block;
+  color: white;
+  position: fixed;
+  right: 2vh;
+  pointer-events: all;
+  z-index: 2;
+  cursor: pointer;
+  top: 2vh;
+  height: 0;
+}
+
+.dropdown-content {
+  font-family: Arial;
+  font-size: 1.8vh;
+  height: 18vh;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  width: 18vh;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2vh 0;
+  border-radius: 1vh;
+  z-index: 1;
+  right: 0px;
+  margin-top: 0.5vh;
+  pointer-events: all;
+  padding-bottom: 0;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 1vh 2vh;
+  padding-top: 0.9vh;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25vh, 1vh));
+  gap: 1vh;
+  padding: 1vh;
+  justify-content: center;
+  justify-items: center;
+}
+
+@media (min-height: 400px) and (orientation: portrait) {
+  .title {
+    width: 70% !important;
+  }
+}
+
+@media only screen and (max-width: 400px) and (orientation: portrait) { /*phone*/
+  .title {
+    font-size: 9vh !important;
+  }
+}
+
+.gallery a {
+  display: block;
+  text-align: center;
+  border-radius: 1vh;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: white;
+  transition: transform 0.2s;
+  color: #76bfda;
+  width: 100%;
+}
+
+.gallery a:hover {
+  transform: scale(1.03);
+}
+
+.gallery img {
+  width: 25vh;
+  height: auto;
+  display: block;
+}
+
+.caption {
+  padding: 0.5rem;
+  font-weight: bold;
+  font-family: Moonstrike;
+  font-size: 3vh;
+  color: #76bfda;
+  border-bottom-color: #76bfda;;
+}

@@ -1,0 +1,92 @@
+body {
+  background-color: rgb(38, 38, 38);
+  font-family: Moonstrike;
+}
+
+@font-face {
+  font-family: 'Moonstrike';
+  src: url('Moonstrike.woff2') format('woff2'),
+  url('moonstrike-nrqzp.woff') format('woff'),
+  url('Moonstrike-nRqzP.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+.totalPrice {
+  font-size: 5vh;
+  color: white;
+  margin-top: 4vh;
+}
+
+.price {
+  font-size: 3vh;
+  color: white;
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+  font-family: moonstrike;
+}
+
+.title {
+  border-bottom: 2px solid white;
+  margin-top: 0;
+  width: 30%;
+  display: inline-block;
+  padding-bottom: 1vh;
+  font-family: Moonstrike;
+  text-align: center;
+  font-size: 13vh;
+  color: white;
+  margin-bottom: 2vh;
+}
+
+.dropdown {
+  display: inline-block;
+  color: white;
+  position: fixed;
+  right: 2vh;
+  pointer-events: all;
+  z-index: 2;
+  cursor: pointer;
+  top: 2vh;
+  height: 0;
+}
+  
+.dropdown-content {
+  font-family: Arial;
+  font-size: 1.8vh;
+  height: 18vh;
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    width: 18vh;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2vh 0;
+    border-radius: 6px;
+    z-index: 1;
+    right: 0px;
+    margin-top: 0.5vh;
+    pointer-events: none;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 1vh 2vh;
+    padding-top: 0.9vh;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .dropdown.show .dropdown-content {
+    display: block;
+  }

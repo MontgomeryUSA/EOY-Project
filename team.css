@@ -1,0 +1,203 @@
+@font-face {
+  font-family: 'Moonstrike';
+  src: url('Moonstrike.woff2') format('woff2'),
+       url('moonstrike-nrqzp.woff') format('woff'),
+       url('Moonstrike-nRqzP.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media (min-height: 400px) and (orientation: portrait) { /*phone*/
+  .summary {
+    display: none !important;
+  }
+  .teammate {
+    flex-direction: column;
+  }
+  .teammate {
+    width: 100% !important;
+    padding-top: 0vh !important;
+    padding-bottom: 0vh !important;
+    text-align: center !important;
+  }
+  .teammate img {
+    width: 100% !important;
+    height: auto;
+    padding-right: 0vh !important;
+    padding-top: 2vh;
+  }
+  .name {
+    font-size: 6vh !important;
+    white-space: wrap !important;
+  }
+  .teammate-info.reverse {
+    padding-right: 0vh !important;
+  }
+  .teammate.reverse {
+    flex-direction: column !important;
+  }
+  .teammate-info {
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+  }
+  .header {
+    transform: scale(1);
+  }
+}
+
+.teammate.reverse {
+  flex-direction: row-reverse;
+}
+
+.summary {
+  width: 70%;
+  text-align: center;
+  font-size: 2vh;
+}
+
+.teammate {
+  display: flex;
+  justify-content: center;
+  margin: 0vh auto;
+  width: 60%;
+  padding-top: 5vh;
+  padding-bottom: 3vh;
+}
+
+.teammate img {
+  width: 60vh;
+  height: auto;
+  padding-right: 2vh;
+}
+
+.teammate-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.teammate-info.reverse {
+  padding-right: 2vh;
+}
+
+.name {
+  font-size: 7vh;
+  font-family: Moonstrike;
+  color: white;
+  margin-top: 0;
+  text-decoration: underline;
+  margin-bottom: 0px;
+  white-space: nowrap;
+}
+
+.job {
+  font-size: 2vh;
+  color: #76bfda;
+  font-family: Moonstrike;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.biography {
+  font-size: 2.5vh;
+  color: rgb(192, 192, 192);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: rgb(38, 38, 38);
+  overflow-x: hidden;
+  margin: 0;
+}
+
+.summary {
+  padding-top: 70vh;
+  text-align: right;
+  color: white;
+  font-size: 3vh;
+  font-family: Arial;
+  padding-right: 2vh;
+}
+
+.header {
+  background-image: url('team photos/background.JPG'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  padding: 0;
+}
+
+
+@media (min-width: 768px) and (max-width: 2000px) and (orientation: landscape) {
+  .title {
+    width: 50% !important;
+  }
+}
+
+@media (min-height: 400px) and (orientation: portrait) {
+  .title {
+    width: 70% !important;
+    font-size: 10vh !important;
+  }
+}
+
+.title {
+  margin-top: 0;
+  width: 30%;
+  display: inline-block;
+  font-family: Moonstrike;
+  font-size: 15vh;
+  color: white;
+  text-align: left;
+  padding-left: 2vh;
+}
+
+.dropdown {
+  display: inline-block;
+  color: white;
+  position: fixed;
+  right: 2vh;
+  pointer-events: all;
+  z-index: 2;
+  cursor: pointer;
+  top: 2vh;
+  height: 0;
+}
+
+.dropdown-content {
+  font-family: Arial;
+  font-size: 1.8vh;
+  height: 18vh;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  width: 18vh;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2vh 0;
+  border-radius: 1vh;
+  z-index: 1;
+  right: 0px;
+  margin-top: 0.5vh;
+  pointer-events: all;
+  padding-bottom: 0;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 1vh 2vh;
+  padding-top: 0.9vh;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}

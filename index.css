@@ -1,0 +1,280 @@
+.buttonLayout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2vh;
+}
+@font-face {
+  font-family: 'Moonstrike';
+  src: url('Moonstrike.woff2') format('woff2'),
+       url('moonstrike-nrqzp.woff') format('woff'),
+       url('Moonstrike-nRqzP.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media (min-width: 768px) and (max-width: 1300px) and (orientation: landscape) {
+  .block {
+    margin-top:44vh !important;
+    margin-left: 15vh !important;
+  }
+  .homepage {
+    overflow: hidden !important;
+  }
+  .rectangle {
+    display: none;
+  }
+  .rectangle2 {
+    display: none;
+  }
+}
+@media (min-height: 400px) and (orientation: portrait) {
+  .block {
+    margin-top: 35vh !important;
+    margin-left: 0vh !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  h2 {
+    font-size: 3vh !important;
+    margin-top: 30vh !important;
+  }
+  p {
+    font-size: 15vh !important;
+    text-shadow: -1vh 1vh 0px rgba(0, 0, 0, 0.69) !important;
+  }
+  .button1, .button2 {
+    font-size: 3vh !important;
+    width: 20vh !important;
+    margin: 0vh !important;
+  }
+  .background {
+    top: -30vh !important;
+    left: 1vh !important;
+    transform: rotate(90deg) !important;
+  }
+  .rectangle {
+    height: 0px !important;
+  }
+  .homepage {
+    overflow: hidden !important;
+  }
+}
+@media only screen and (max-width: 400px) and (orientation: portrait) {
+  .block {
+    margin-top: 30vh !important;
+    margin-left: 0vh !important;
+  }
+  h2 {
+    font-size: 2.5vh !important;
+  }
+  p {
+    font-size: 12vh !important;
+  }
+  .background {
+    top: -10vh !important;
+    left: -24vh !important;
+    width: 200% !important;
+    height: 70vh !important;
+  }
+}
+
+.rectangle {
+  height: 15vh;
+  width: 30vh;
+  background-color: black;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  pointer-events: none;
+}
+.rectangle2 {
+  height: 26vh;
+  width: 15vh;
+  background-color: black;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  pointer-events: none;
+}
+
+.homepage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  pointer-events: all;
+  position: relative;
+  overflow: hidden !important;
+}
+
+.button-row {
+  display: flex;
+  position: relative;
+}
+
+
+.block {
+  margin-top: 66vh;
+  margin-left: 42vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+  pointer-events: none;
+  width: 75%;
+  height: 100%;
+}
+
+p{
+  font-family: 'Moonstrike', sans-serif;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: 0px;
+  color: white;
+  font-size: 20vh;
+  pointer-events: all;
+  z-index: 2;
+  position: relative;
+  transition: all 0.5s;
+  text-shadow: -3vh -1vh 0px rgb(0, 0, 0);
+}
+html {
+  height: 90vh;
+  width: 100%;
+  overflow: hidden !important;
+  position: fixed;
+}
+body {
+  height: 90vh;
+  width: 100%;
+  margin: 0;
+  background: black;
+  pointer-events: none;
+  z-index: -1;
+  position: absolute;
+  color: white;
+  font-size: 10vh;
+  overflow: hidden !important;
+  position: fixed;
+}
+
+.background {
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  left: 39vh;
+  height: 100vh;
+  pointer-events: all;
+  z-index: 0;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+
+.button1, .button2 {
+  position: relative;
+  font-size: 5vh;
+  pointer-events: all;
+  z-index: 2;
+  display: inline-block;
+  border-radius: 1vh;
+  background-color: transparent;
+  border: 0.3vh solid white;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 2vh;
+  cursor: pointer;
+  width: 30vh;
+  margin: 1vh;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.button1 span, .button2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button1 span:after, .button2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -2vh;
+  transition: 0.5s;
+}
+
+.button1:hover span, .button2:hover span {
+  padding-right: 4.5vh;
+}
+
+.button1:hover span:after, .button2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+h2 {
+  margin: 1vh;
+  font-family: Arial;
+  color: white;
+  font-size: 4vh;
+  pointer-events: all;
+  z-index: 2;
+  position: relative;
+  transition: all 0.5s;
+}
+
+.dropdown {
+  display: inline-block;
+  color: white;
+  position: fixed;
+  right: 2vh;
+  pointer-events: all;
+  z-index: 2;
+  cursor: pointer;
+  top: -2vh;
+  height: 0;
+}
+
+.dropdown-content {
+  font-family: Arial;
+  font-size: 1.8vh;
+  height: 18vh;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  width: 18vh;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2vh 0;
+  border-radius: 1vh;
+  z-index: 1;
+  right: 0px;
+  margin-top: 0.5vh;
+  pointer-events: all;
+  padding-bottom: 0;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 1vh 2vh;
+  padding-top: 0.9vh;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}

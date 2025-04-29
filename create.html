@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="create.css" rel="stylesheet" type="text/css">
+    <title>Create</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="create.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/examples/jsm/loaders/GLTFLoader.js": "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js",
+          "three/examples/jsm/controls/OrbitControls.js": "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js",
+          "three/examples/jsm/renderers/CSS2DRenderer.js": "https://unpkg.com/three@0.160.0/examples/jsm/renderers/CSS2DRenderer.js",
+          "three/examples/jsm/loaders/FontLoader.js": "https://unpkg.com/three@0.160.0/examples/jsm/loaders/FontLoader.js"
+        }
+      }
+      </script>
+      
+  </head>
+    
+  <body>
+    <script type="module" src="create2.js"></script>
+
+      <div class="dropdown" id="myDropdown">
+        <i class="fas fa-user-circle" style="font-size:6vh;" onclick="toggleDropdown()"></i>
+      <div class="dropdown-content">
+        <a href="index.html" onclick="closeDropdown()">Home</a>
+        <a href="create.html" onclick="closeDropdown()">Create</a>
+        <a href="explore.html" onclick="closeDropdown()">Explore</a>
+        <a href="team.html" onclick="closeDropdown()">Team</a>
+      </div>
+    </div>              
+
+        <div id="main">
+          <label for="fileInput" class="fileButton">
+              <i class="fas fa-file-upload" style="padding-right: 10px;"></i>Upload CAD File
+          </label>
+          <input type="file" id="fileInput" style="display: none;" accept=".glb,.gltf" >
+          <canvas id="webgl"></canvas>
+
+          <div id = "popup">
+            <div class="form-popup" id="myForm">
+                <form class="form-container">
+                  <p class = "formTitle">SAVE PROGRESS?</p>
+                  <p class = "formSummary">Your work will be saved, and moved into the pricing section</p>
+              
+                  <button class="cancelForm" onclick="closeForm()">Cancel</button>
+                  <a href="pricing.html" class="saveForm" onclick="saveSelectionsToLocal()">Save</a>
+                </form>
+              </div>
+            </div>
+      </div>
+
+        <div id="draggable-container">
+          <div id="parts-summary" class="parts-summary">
+            <h3>Store Information</h3>
+            <table id="summary-table">
+              <thead>
+                <tr><th>Part</th><th>Store</th></tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+          
+
+        <button class="saveButton" onclick="openForm()">Save</button>
+      
+        
+
+
+  <div id="side-panel" class="side-panel">
+    <div id="arrow" class="arrow" onclick="togglePanel()">
+        <span id="arrow-icon">></span>
+    </div>
+    <div class = "panelContent">
+    <p class = "panelTitle">MATERIALS</p>
+    <button class="materialButton" style="--button-bg: #7d7f7c;">PVC</button>
+    <button class="materialButton polycarbonateButton" style="--button-bg: #d9d9d9;">Polycarbonate</button>
+    <button class="materialButton acrylicButton" style="--button-bg: #ffffff;">Acrylic</button>
+    <button class="materialButton" style="--button-bg: #b5651d;">Plywood</button>
+    <button class="materialButton" style="--button-bg: #cc5500;">Cedar</button>
+    <button class="materialButton" style="--button-bg: #8f0000;">Red</button>
+    <button class="materialButton" style="--button-bg: #895129;">Oak</button>
+    <button class="materialButton" style="--button-bg: #ff0000;">Maple</button>
+    <button class="materialButton" style="--button-bg: #5b2200;">Walnut</button>
+    <button class="materialButton" style="--button-bg: #7b2100;">Mahogany</button>
+    <button class="materialButton" style="--button-bg: #914d8a;">Cherry</button>
+    <button class="materialButton" style="--button-bg: #1f4d00;">Pine</button>
+    <button class="materialButton" style="--button-bg: #788cbc;">Aluminum</button>
+    <button class="materialButton" style="--button-bg: #aec1eb;">Stainless</button>
+    <button class="materialButton" style="--button-bg: #b7b7b7;">Steel</button>
+    <button class="materialButton" style="--button-bg: #E79A3F;">Brass</button>
+    <button class="materialButton" style="--button-bg: #b57e48;">Copper</button>
+    <h2 class = "panelTitle">STORES</h2>
+    <button class="storeOptions storeOption1" style="--button-bg: linear-gradient(144deg, #FF0000, #FF9100 50%,#FFED00)" onclick="toggleStoreDropdown()">
+        Home Depot
+      </button>
+      <button class="storeOptions storeOption2" style="--button-bg: linear-gradient(144deg,#0021FF, #00A3FF 50%,#00FFF0);" onclick="toggleStoreDropdown()">
+        Lowes
+      </button>
+      <button class="storeOptions storeOption3" style="--button-bg: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); margin-bottom: 6vh;" onclick="toggleStoreDropdown()">
+        Other
+      </button>
+      <button class="storeOptions storeOption4" style="--button-bg: linear-gradient(144deg,#00FFFF, #CA86FF 50%,#FF6BD1); margin-bottom: 6vh;" onclick="toggleStoreDropdown()">
+        Any
+      </button>
+    </div>           
+    </div>
+  </body>
+</html>

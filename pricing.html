@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+    <html>
+        <head> 
+            <link href="pricing.css" rel="stylesheet" type="text/css">
+            <title>Pricing</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+            <script src="pricing2.js"></script>
+        </head>
+        <body>
+        <script type="module" src="/pricing.js"></script>
+        <div class = "main">
+            <p class="title"> Pricing</p>
+            <div id="materialsUsed"></div>
+            <p class="totalPrice">TOTAL PRICE:  $00.00</p>
+        </div>
+        <div class="dropdown" id="myDropdown">
+            <i class="fas fa-user-circle" style="font-size:6vh;" onclick="toggleDropdown()"></i>
+            <div class="dropdown-content" style="padding-bottom: 0;">
+                <a href="index.html" onclick="closeDropdown()" style = "pointer-events: all;">Home</a>
+                <a href="create.html" onclick="closeDropdown()" style = "pointer-events: all;">Create</a>
+                <a href="explore.html" onclick="closeDropdown()" style = "pointer-events: all;">Explore</a>
+                <a href="team.html" onclick="closeDropdown()" style = "pointer-events: all;">Team</a>
+              </div>
+            </div> 
+        </body>
+    </html>
