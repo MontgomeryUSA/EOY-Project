@@ -34,6 +34,9 @@
   }
 
   .saveButton {
+    display: inline-flex !important;   /* make sure it’s rendered   */
+    opacity: 1 !important;             /* never hidden by opacity   */
+    pointer-events: all !important;    /* override body’s setting   */
     bottom: 10vh !important;
   }
 }
@@ -608,4 +611,33 @@ body {
 
 .dropdown.show .dropdown-content {
   display: block;
+}
+
+#save-overlay {                     /* transparent full-screen layer   */
+  position: fixed;
+  inset: 0;                         /* top:0 right:0 bottom:0 left:0   */
+  pointer-events: none;             /* ignore clicks                   */
+  z-index: 1000;                    /* higher than any canvas or panel */
+}
+
+#save-overlay .saveButton {         /* put our real button in here     */
+  position: absolute !important;    /* detach from old flow            */
+  right: 2vh;                       /* same visual position            */
+  bottom: 2vh;
+  display: inline-flex !important;
+  opacity: 1 !important;
+  pointer-events: all !important;   /* clickable again                 */
+}
+
+.unitButton{
+  pointer-events:all;        /* <--- allow clicks (body has none) */
+  cursor:pointer;
+  padding:.6vh 2vh;
+  border:none;
+  border-radius:1vh;
+  background:#444;
+  color:#fff;
+  font-family:Arial;
+  font-size:1.5vh;
+  margin-left:1vh;
 }

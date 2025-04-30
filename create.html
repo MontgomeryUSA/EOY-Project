@@ -20,7 +20,7 @@
   </head>
     
   <body>
-    <script type="module" src="create2.js"></script>
+    <script type="module" src="create2.js" defer></script>
 
       <div class="dropdown" id="myDropdown">
         <i class="fas fa-user-circle" style="font-size:6vh;" onclick="toggleDropdown()"></i>
@@ -36,6 +36,9 @@
           <label for="fileInput" class="fileButton">
               <i class="fas fa-file-upload" style="padding-right: 10px;"></i>Upload CAD File
           </label>
+
+          <button id="unitsToggle" class="unitButton">mm</button>
+
           <input type="file" id="fileInput" style="display: none;" accept=".glb,.gltf" >
           <canvas id="webgl"></canvas>
 
@@ -46,7 +49,7 @@
                   <p class = "formSummary">Your work will be saved, and moved into the pricing section</p>
               
                   <button class="cancelForm" onclick="closeForm()">Cancel</button>
-                  <a href="pricing.html" class="saveForm" onclick="saveSelectionsToLocal()">Save</a>
+                  <a href="pricing.html" class="saveForm" onclick="submitEstimate()">Save</a>
                 </form>
               </div>
             </div>
@@ -65,8 +68,6 @@
           </div>
         </div>
           
-
-        <button class="saveButton" onclick="openForm()">Save</button>
       
         
 
@@ -108,6 +109,11 @@
         Any
       </button>
     </div>           
+    </div>
+    <div id="save-overlay">
+      <button class="saveButton" onclick="submitEstimate()">
+        Save
+      </button>
     </div>
   </body>
 </html>

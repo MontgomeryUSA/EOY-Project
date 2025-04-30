@@ -1,3 +1,4 @@
+
 function togglePanel() {
   const panel = document.getElementById('side-panel');
   const arrow = document.getElementById('arrow');
