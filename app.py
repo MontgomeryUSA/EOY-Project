@@ -53,8 +53,13 @@ MATERIAL_SYNONYM = {
 }
 
 # ───────────────────────── helpers
-def price_float(txt: str) -> float | None:
-    m = PRICE_RE.search(txt.replace(",", ""))
+def price_float(txt) -> float | None:          # ← REPLACED
+    """Return the first $-amount in the cell, whatever the original type is."""
+    if pd.isna(txt):               # NaN
+        return None
+    if isinstance(txt, (int, float)):
+        return float(txt)
+    m = PRICE_RE.search(str(txt).replace(",", ""))
     return float(m.group(1)) if m else None
 
 

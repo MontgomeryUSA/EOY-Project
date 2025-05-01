@@ -9,9 +9,8 @@ const scrapeHomeDepot = require('./scrapers/homedepot.js');
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
 async function start() {
-  fsSync.writeFileSync("results.csv", "Title,Price,URL\n");
 
-  const links = (await fs.readFile("links.txt", "utf-8"))
+  const links = (await fs.readFile("lowesLinks.txt", "utf-8"))
     .split("\n")
     .map(link => link.trim())
     .filter(Boolean);
