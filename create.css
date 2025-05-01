@@ -1,5 +1,6 @@
 #draggable-container {
-  position: absolute;
+  position: absolute;  
+  z-index: 4;
   right: 15vh;
   width: min-content;
   background: rgba(255, 255, 255, 0.95);
@@ -8,13 +9,12 @@
   padding: 1vh;
   font-family: Arial, sans-serif;
   font-size: 1.5vh;
-  z-index: 4;
   pointer-events: all;
   top: 2vh;
   max-height: 20vh;
   overflow-x: none;
   overflow-y: scroll;
-  scrollbar-width: none;  
+  scrollbar-width: none;
 }
 
 @font-face {
@@ -629,15 +629,25 @@ body {
   pointer-events: all !important;   /* clickable again                 */
 }
 
-.unitButton{
+#draggable-container2 {
   pointer-events:all;        /* <--- allow clicks (body has none) */
-  cursor:pointer;
-  padding:.6vh 2vh;
+  padding: none;
   border:none;
-  border-radius:1vh;
   background:#444;
-  color:#fff;
-  font-family:Arial;
+  position: absolute;
+  right: 14vh;
+  bottom: 2.5vh;
+  z-index: 4;
+  width: min-content;
+  border-radius: 1vh;
+  height: min-content;
+}
+.unitButton {
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: Arial;
   font-size:1.5vh;
-  margin-left:1vh;
+  padding:1vh 2.4vh;
+  cursor:pointer;
 }
