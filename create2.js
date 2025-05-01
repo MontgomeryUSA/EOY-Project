@@ -1,10 +1,4 @@
-/*  Build-IT – viewer / selector  (2024-05-02)
- *  ──────────────────────────────────────────
- *  • keeps your original look & UX
- *  • uploads GLB, lets you paint parts, pick stores
- *  • adds units-toggle (mm ↔ cm ↔ m ↔ in ↔ ft) – value sent to backend
- *  • stores a material name on each mesh (derived from colour)
- */
+/*  Build-IT – viewer / selector  (2024-05-02) */
 import * as THREE                      from "three";
 import { GLTFLoader       } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls    } from "three/examples/jsm/controls/OrbitControls.js";
@@ -31,24 +25,21 @@ const MATERIAL_BY_RGB = {
   "#b57e48": "copper"
 };
 
-/* helper ─ THREE.Color → “#rrggbb” */
 const hex = c => "#" + c.getHexString();
 
 /* ───────────────────────────── global UI state */
 const UNITS = ["mm", "cm", "m", "in", "ft"];
-let unitsIdx          = 0;          // currently selected units
-let selectedColor     = null;       // THREE.Color when “paint” mode active
+let unitsIdx          = 0;
+let selectedColor     = null;
 let selectedMaterial  = "any";
-let selectedStore     = null;       // Home-Depot / Lowe’s / …
-let mode              = null;       // "color" | "store" | null
+let selectedStore     = null;
+let mode              = null;
 
 /* ───────────────────────────── Three.js scene */
 const scene    = new THREE.Scene();
 scene.background = new THREE.Color("rgb(38,38,38)");
 
-const camera   = new THREE.PerspectiveCamera(
-  75, innerWidth / innerHeight, 0.1, 1000
-);
+const camera   = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
 camera.position.set(0, 40, 150);
 
 const renderer = new THREE.WebGLRenderer({
@@ -73,12 +64,10 @@ document.body.appendChild(labelRenderer.domElement);
 const raycaster        = new THREE.Raycaster();
 const mouse            = new THREE.Vector2();
 const clickableObjects = [];
-const modelMeshes      = {};              // { trueName → meshObject }
+const modelMeshes      = {};
 let   hovered          = null;
 
-/* disable save buttons until a model is loaded */
-document.querySelectorAll(".saveButton, .saveForm")
-        .forEach(b => (b.disabled = true));
+document.querySelectorAll(".saveButton, .saveForm").forEach(b => (b.disabled = true));
 
 /* ───────────────────────────── units-toggle button */
 document.getElementById("unitsToggle").textContent = UNITS[0];
@@ -87,13 +76,12 @@ document.getElementById("unitsToggle").addEventListener("click", () => {
   document.getElementById("unitsToggle").textContent = UNITS[unitsIdx];
 });
 
-/* ───────────────────────────── colour/material buttons */
+/* ───────────────────────────── material buttons */
 document.querySelectorAll(".materialButton").forEach(btn => {
   btn.addEventListener("click", () => {
     const already = btn.classList.contains("selected");
 
-    document
-      .querySelectorAll(".materialButton, .storeOptions")
+    document.querySelectorAll(".materialButton, .storeOptions")
       .forEach(b => b.classList.remove("selected"));
 
     if (!already) {
@@ -103,18 +91,18 @@ document.querySelectorAll(".materialButton").forEach(btn => {
       selectedMaterial = MATERIAL_BY_RGB[rgb] || "any";
       mode             = "color";
     } else {
-      selectedColor = null; mode = null;
+      selectedColor = null;
+      mode = null;
     }
   });
 });
 
-/* store buttons (unchanged from your original file) */
+/* ───────────────────────────── store buttons */
 document.querySelectorAll(".storeOptions").forEach(btn => {
   btn.addEventListener("click", () => {
     const already = btn.classList.contains("selected");
 
-    document
-      .querySelectorAll(".materialButton, .storeOptions")
+    document.querySelectorAll(".materialButton, .storeOptions")
       .forEach(b => b.classList.remove("selected"));
 
     if (!already) {
@@ -124,7 +112,8 @@ document.querySelectorAll(".storeOptions").forEach(btn => {
       selectedMaterial= "any";
       mode            = "store";
     } else {
-      selectedStore = null; mode = null;
+      selectedStore = null;
+      mode = null;
     }
   });
 });
@@ -134,44 +123,40 @@ document.getElementById("fileInput").addEventListener("change", ev => {
   const file = ev.target.files[0];
   if (!file) return;
 
-  /* hide the nice big upload button */
   document.querySelector('label[for="fileInput"]').style.display = "none";
 
-  /* read-in → parse → add to scene */
   const reader = new FileReader();
   reader.onload = e => {
     const loader = new GLTFLoader();
     loader.parse(e.target.result, "", gltf => {
       const model = gltf.scene;
 
-      /* wipe previous */
       clickableObjects.length = 0;
       Object.keys(modelMeshes).forEach(k => delete modelMeshes[k]);
 
       model.traverse(child => {
         if (!child.isMesh) return;
+
         child.material = new THREE.MeshStandardMaterial({ color: 0xffffff });
         child.geometry.computeBoundingSphere();
 
         clickableObjects.push(child);
         modelMeshes[child.name] = child;
 
-        child.userData.materialName = "any";   // default
+        child.userData.materialName = "any";
         child.userData.storeName    = "any";
+
+        updatePartsSummary(child.name, "any");  // ✅ populate table on load
       });
 
       scene.add(model);
-
-      /* ENABLE save buttons */
-      document
-        .querySelectorAll(".saveButton, .saveForm")
-        .forEach(b => (b.disabled = false));
+      document.querySelectorAll(".saveButton, .saveForm").forEach(b => (b.disabled = false));
     });
   };
   reader.readAsArrayBuffer(file);
 });
 
-/* ───────────────────────────── painting / store-assign */
+/* ───────────────────────────── pointer click interaction */
 window.addEventListener("pointerdown", ev => {
   mouse.x = (ev.clientX / innerWidth) * 2 - 1;
   mouse.y = -(ev.clientY / innerHeight) * 2 + 1;
@@ -186,10 +171,26 @@ window.addEventListener("pointerdown", ev => {
     mesh.material.color.copy(selectedColor);
     mesh.userData.materialName = selectedMaterial;
   }
+
   if (mode === "store" && selectedStore) {
     mesh.userData.storeName = selectedStore;
+    updatePartsSummary(mesh.name, selectedStore);  
   }
 });
+
+/* ───────────────────────────── table display */
+function updatePartsSummary(name, store) {
+  const table = document.getElementById("summary-table");
+  let row = table.querySelector(`tr[data-part="${name}"]`);
+  if (!row) {
+    row = document.createElement("tr");
+    row.dataset.part = name;
+    row.innerHTML = `<td>${name}</td><td>${store}</td>`;
+    table.appendChild(row);
+  } else {
+    row.cells[1].textContent = store;
+  }
+}
 
 /* ───────────────────────────── render loop */
 function animate() {
@@ -200,9 +201,8 @@ function animate() {
 }
 animate();
 
-/* ───────────────────────────── submit ▸ backend */
+/* ───────────────────────────── estimation submission */
 async function submitEstimate() {
-  /* guard-clauses */
   if (!Object.keys(modelMeshes).length) {
     alert("Model still loading — try again in a second!");
     return;
@@ -213,7 +213,6 @@ async function submitEstimate() {
     return;
   }
 
-  /* build mesh array */
   const meshArr = Object.entries(modelMeshes).map(([name, mesh]) => ({
     mesh_name: name,
     material : mesh.userData.materialName || "any"
@@ -221,18 +220,12 @@ async function submitEstimate() {
 
   const form = new FormData();
   form.append("file", fileInput.files[0]);
-  form.append(
-    "payload",
-    new Blob(
-      [
-        JSON.stringify({
-          meshes: meshArr,
-          units : UNITS[unitsIdx]   // mm | cm | m | in | ft
-        })
-      ],
-      { type: "application/json" }
-    )
-  );
+  form.append("payload", new Blob([
+    JSON.stringify({
+      meshes: meshArr,
+      units : UNITS[unitsIdx]
+    })
+  ], { type: "application/json" }));
 
   try {
     const r = await fetch("http://127.0.0.1:8000/estimate", {
