@@ -122,7 +122,7 @@ body {
 }
 
 .header {
-  background-image: url('team photos/background.JPG'); 
+  background-image: url('team photos/background.svg'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
